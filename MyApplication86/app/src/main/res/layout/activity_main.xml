@@ -23,6 +23,7 @@
                 android:orientation="horizontal"
         >
             <TextView
+                    android:id="@+id/blocks1"
                     android:layout_width="22dp"
                     android:layout_height="28dp"
                     android:layout_marginLeft="20dp"

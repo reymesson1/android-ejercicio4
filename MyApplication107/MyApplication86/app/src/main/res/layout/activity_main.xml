@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/cb74c16d049c007b1a4a0878da7d9bdd"
+        tools:context=".MainActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="9"
+    />
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+    >
+        <Button
+                android:id="@+id/play_now"
+                android:layout_width="256dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="70dp"
+                android:background="@drawable/ic_button_red"
+                android:text="PLAY NOW"
+        />
+    </LinearLayout>
+
+</LinearLayout>

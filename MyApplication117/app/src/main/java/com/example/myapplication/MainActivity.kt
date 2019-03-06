@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -14,6 +15,7 @@ import org.jetbrains.anko.doAsync
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
+
     var moveOne : Int = 0
     var moveTwo : Int = 0
     var moveThree : Int = 0
@@ -27,6 +29,29 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var SM = getSystemService(SENSOR_SERVICE) as SensorManager
+
+        var mySensor = SM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+
+        SM.registerListener(this,mySensor,SensorManager.SENSOR_DELAY_NORMAL)
+
+        var paramsNave = nave.getLayoutParams() as LinearLayout.LayoutParams
+
+        paramsNave.setMargins(0,100,0, 0)
+
+        nave.layoutParams = paramsNave
+
+        galagaFrameLayout.setOnClickListener{
+
+            moveBullet = 700
+            actualPosition = moveNave
+
+            var paramsBullet = bullet.layoutParams as FrameLayout.LayoutParams
+
+            paramsBullet.setMargins(actualPosition,moveBullet,0,0)
+
+            bullet.layoutParams = paramsBullet
+        }
 
         doAsync {
 
@@ -78,13 +103,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent?) {
 
-        var params = nave.layoutParams!! as FrameLayout.LayoutParams
+        var paramsNave = nave.getLayoutParams() as LinearLayout.LayoutParams
 
-        if(event!!?.values[0]>2.8 && event.values[0]<9.0) {
+        if(event!!?.values[0]>2.8 && event.values[0]<9.0){
 
-            params.setMargins(0,moveNave,0, 0)
+            paramsNave.setMargins(0,moveNave,0, 0)
 
-            nave.layoutParams = params
+            nave.layoutParams = paramsNave
 
             moveNave-=20
 
@@ -92,17 +117,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         if(event!!?.values[0]>-9.8 && event.values[0]<-2.8){
 
-            params.setMargins(0,moveNave,0, 0)
+            paramsNave.setMargins(0,moveNave,0, 0)
 
-            nave.layoutParams = params
+            nave.layoutParams = paramsNave
 
             moveNave += 20
+
         }
 
-
-
     }
-
-
 
 }
